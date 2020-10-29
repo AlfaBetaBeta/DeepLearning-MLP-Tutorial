@@ -45,7 +45,7 @@ It also bears interest to inspect what is the output of the trained MLP when pas
 
 Under such circumstances, the model prediction is distinctly `Bag`:
 
-<img src="https://github.com/AlfaBetaBeta/DeepLearning-MLP-Tutorial/blob/master/img/Blank-input-classification.png" width=60% height=60%>
+<img src="https://github.com/AlfaBetaBeta/DeepLearning-MLP-Tutorial/blob/master/img/Blank-input-classification.png" width=50% height=50%>
 
 As a double check, the forward propagation can be replicated manually by executing the following steps:
 
