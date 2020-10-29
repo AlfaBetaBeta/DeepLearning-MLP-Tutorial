@@ -1,8 +1,6 @@
 # FashionMNIST Image Classification
 
-This repository comprises the noteboook `MLP_Tutorial.ipynb`, embedding a tutorial template that belongs originally to TensorFlow, alongside additional contents with relevant elaborations. The template roughly corresponds to Section `I. Basic classification` in the notebook. It showcases the assembly and training of an image classifier via `tensorflow.keras` based on the [Fashion MNIST](https://github.com/zalandoresearch/fashion-mnist) dataset, which embeds 70,000 low resolution (28 x 28 pixel) images of clothing articles from 10 categories, as per the sample below (each category takes three rows).
-
-<img src="https://github.com/AlfaBetaBeta/DeepLearning-MLP-Tutorial/blob/master/img/FashionMNIST.png" width=100% height=100%>
+This repository comprises the noteboook `MLP_Tutorial.ipynb`, embedding a tutorial template that belongs originally to TensorFlow, alongside additional contents with relevant elaborations. The template roughly corresponds to Section `I. Basic classification` in the notebook. It showcases the assembly and training of an image classifier via `tensorflow.keras` based on the [Fashion MNIST](https://github.com/zalandoresearch/fashion-mnist) dataset, which embeds 70,000 low resolution (28 x 28 pixel) images of clothing articles from 10 categories, as per [this sample](https://github.com/zalandoresearch/fashion-mnist/blob/master/doc/img/fashion-mnist-sprite.png) (each category takes three rows).
 
 The classifier is a multi-layer perceptron (MLP) model, with one hidden layer comprising 144 neurons and `relu` activation function. Consistently with the category levels, the output layer consists of 10 neurons with `softmax` activation. The default `GlorotUniform` initialiser has been fed a `RANDOM_SEED` to ensure reproducibility of results. For reference, the summary of the MLP model is shown below.
 
