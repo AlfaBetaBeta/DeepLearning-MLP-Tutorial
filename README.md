@@ -6,11 +6,13 @@ This repository comprises the noteboook `MLP_Tutorial.ipynb`, embedding a tutori
 
 The classifier is a multi-layer perceptron (MLP) model, with one hidden layer comprising 144 neurons and `relu` activation function. Consistently with the category levels, the output layer consists of 10 neurons with `softmax` activation. The default `GlorotUniform` initialiser has been fed a `RANDOM_SEED` to ensure reproducibility of results. For reference, the summary of the MLP model is shown below.
 
-<img src="https://github.com/AlfaBetaBeta/DeepLearning-MLP-Tutorial/blob/master/img/model-summary.png" width=55% height=55%>
+<img src="https://github.com/AlfaBetaBeta/DeepLearning-MLP-Tutorial/blob/master/img/model-summary.png" width=65% height=65%>
 
-The additional elaborations in the notebook are mostly located from Section `II. Post-processing` onwards, regarding the following aspects, succinctly presented here:
+**The additional elaborations in the notebook are mostly located from Section `II. Post-processing` onwards**, regarding the following aspects, succinctly presented here:
 
-Toc
+* [Weight interpretation](https://github.com/AlfaBetaBeta/DeepLearning-MLP-Tutorial#weight-interpretation)
+* [Handling of a blank input](https://github.com/AlfaBetaBeta/DeepLearning-MLP-Tutorial#handling-of-a-blank-input)
+* [Weight evolution over training](https://github.com/AlfaBetaBeta/DeepLearning-MLP-Tutorial#weight-evolution-over-training)
 
 ### Weight interpretation
 
@@ -30,7 +32,7 @@ Note that neuron 129 seems to have learned patterns pointing to two categories s
 
 Formally, the weights associated to the output layer (`model.layers[2]`) can be treated in the same manner. When doing so, each set of weights transforms into a (12 x 12) array.
 
-<img src="https://github.com/AlfaBetaBeta/DeepLearning-MLP-Tutorial/blob/master/img/Layer2-Weight-AllUnits.png" width=100% height=100%>
+<img src="https://github.com/AlfaBetaBeta/DeepLearning-MLP-Tutorial/blob/master/img/Layer2-Weight-AllUnits.png" width=50% height=50%>
 
 In this case, there is no intuitive interpretation for these weights.
 
@@ -43,7 +45,7 @@ It also bears interest to inspect what is the output of the trained MLP when pas
 
 Under such circumstances, the model prediction is distinctly `Bag`:
 
-<img src="https://github.com/AlfaBetaBeta/DeepLearning-MLP-Tutorial/blob/master/img/Blank-input-classification.png" width=20% height=20%>
+<img src="https://github.com/AlfaBetaBeta/DeepLearning-MLP-Tutorial/blob/master/img/Blank-input-classification.png" width=80% height=80%>
 
 As a double check, the forward propagation can be replicated manually by executing the following steps:
 
@@ -57,18 +59,18 @@ As a double check, the forward propagation can be replicated manually by executi
 
 These steps lead to exactly the same array of predictions as the one resulting from feeding a blank input to `model.predict()`, as expected. When rearranging the hidden feature values from step 2 above as a (12 x 12) array, the following is obtained:
 
-<img src="https://github.com/AlfaBetaBeta/DeepLearning-MLP-Tutorial/blob/master/img/Blank-input-hidden-layer-values.png" width=20% height=20%>
+<img src="https://github.com/AlfaBetaBeta/DeepLearning-MLP-Tutorial/blob/master/img/Blank-input-hidden-layer-values.png" width=35% height=35%>
 
-There is no intuitive visual meaning. By inspection (though this can be corroborated with ease), the neuron with the largest value after activation is neuron number 33 which, upon review of the corresponding weight distribution in the weight interpretation elaboration, does not convey intuitive meaning either. 
+There is no intuitive visual meaning. By inspection (though this can be corroborated with ease), the neuron with the largest value after activation is neuron number 33 which, upon review of the corresponding weight distribution in the [weight interpretation](https://github.com/AlfaBetaBeta/DeepLearning-MLP-Tutorial#weight-interpretation) further above, does not convey intuitive meaning either. 
 
-Also, and leaving the bias coefficients aside, only 30 of the 144 neurons in the hidden layer contribute to the `Bag` neuron when feeding in a blank input. The fact that `Bag` is predicted from a blank is seemengly a serendipitous byproduct of the parameter values learned at training.
+Also, and leaving the bias coefficients aside, only 30 of the 144 neurons in the hidden layer contribute to the `Bag` neuron when feeding in a blank input (i.e. multiplying the hidden feature values by the output weights and subsetting by the `Bag` neuron leads to only 30 non-zero values). The fact that `Bag` is predicted from a blank is seemengly a serendipitous byproduct of the parameter values learned at training.
 
 
 ### Weight evolution over training
 
 By defining a pair of convenient functions to retrieve the weight distribution after each epoch during training, it is possible the track the evolution of the weight coefficients, and possibly enable visual inspection of the weight array to check if any patterns emerge during training (in this case defined by `n_epochs=15`). Illustratively, doing this for the **first** neuron of the hidden layer returns:
 
-<img src="https://github.com/AlfaBetaBeta/DeepLearning-MLP-Tutorial/blob/master/img/Layer1-Weight-Unit1-evolution-training.png" width=20% height=20%>
+<img src="https://github.com/AlfaBetaBeta/DeepLearning-MLP-Tutorial/blob/master/img/Layer1-Weight-Unit1-evolution-training.png" width=35% height=35%>
 
 Interestingly, the weight distribution of this neuron adopts an intuitive shape early on (resemblance to class `Coat` or `Shirt` at epoch 4) but then becomes rather 'abstract' again. It is suggested that this could be interpreted as another sign of overfitting, though more thorough research would be needed to confirm this.
 
