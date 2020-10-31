@@ -37,13 +37,13 @@ In this case, there is no intuitive interpretation for these weights.
 
 ### Handling of a blank input
 
-It also bears interest to inspect what is the output of the trained MLP when passing a blank image as input (i.e. an array `np.ones((28,28))` as the one below, recalling the pixel values have been normalised).
+It also bears interest to inspect what is the output of the trained MLP when passing a blank image as input (i.e. an array `np.ones((28,28))` as the one below, recalling that the pixel values have been normalised).
 
 <img src="https://github.com/AlfaBetaBeta/DeepLearning-MLP-Tutorial/blob/master/img/Blank-input.png" width=20% height=20%>
 
 Under such circumstances, the model prediction is distinctly `Bag`:
 
-<img src="https://github.com/AlfaBetaBeta/DeepLearning-MLP-Tutorial/blob/master/img/Blank-input-classification.png" width=50% height=50%>
+<img src="https://github.com/AlfaBetaBeta/DeepLearning-MLP-Tutorial/blob/master/img/Blank-input-classification.png" width=40% height=40%>
 
 As a double check, the forward propagation can be replicated manually by executing the following steps:
 
@@ -59,7 +59,7 @@ These steps lead to exactly the same array of predictions as the one resulting f
 
 <img src="https://github.com/AlfaBetaBeta/DeepLearning-MLP-Tutorial/blob/master/img/Blank-input-hidden-layer-values.png" width=35% height=35%>
 
-There is no intuitive visual meaning. By inspection (though this can be corroborated with ease), the neuron with the largest value after activation is neuron number 33 which, upon review of the corresponding weight distribution in the [weight interpretation](https://github.com/AlfaBetaBeta/DeepLearning-MLP-Tutorial#weight-interpretation) further above, does not convey intuitive meaning either. 
+There is no intuitive visual meaning. By inspection (though this can be corroborated programmatically with ease), the neuron with the largest value after activation is neuron number 33 which, upon review of the corresponding weight distribution in the [weight interpretation](https://github.com/AlfaBetaBeta/DeepLearning-MLP-Tutorial#weight-interpretation) further above, does not convey intuitive meaning either. 
 
 Also, and leaving the bias coefficients aside, only 30 of the 144 neurons in the hidden layer contribute to the `Bag` neuron when feeding in a blank input (i.e. multiplying the hidden feature values by the output weights and subsetting by the `Bag` neuron leads to only 30 non-zero values). The fact that `Bag` is predicted from a blank is seemengly a serendipitous byproduct of the parameter values learned at training.
 
